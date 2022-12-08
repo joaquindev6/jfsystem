@@ -1,0 +1,23 @@
+package com.company.app.controllers.reports;
+
+import com.company.app.models.User;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+@WebServlet("/control/usuarios/reporte-de-usuarios.pdf") //Esta es la ruta que se mostrara al generar el PDF
+public class UserReportServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getSession().getAttribute("userLogin");
+        resp.setContentType("application/pdf");
+        OutputStream out = resp.getOutputStream();
+        PdfReport.initReportPDF(out, 1, user); //Llama a la funcion de crear PDF
+    }
+}
