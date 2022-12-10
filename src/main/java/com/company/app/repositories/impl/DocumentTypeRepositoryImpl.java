@@ -1,18 +1,18 @@
 package com.company.app.repositories.impl;
 
+import com.company.app.annotations.Repository;
 import com.company.app.models.DocumentType;
 import com.company.app.repositories.DocumentTypeRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+@Repository
 public class DocumentTypeRepositoryImpl implements DocumentTypeRepository {
 
+    @Inject
     private EntityManager em;
-
-    public DocumentTypeRepositoryImpl(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<DocumentType> findAll() {

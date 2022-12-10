@@ -1,18 +1,18 @@
 package com.company.app.repositories.impl;
 
+import com.company.app.annotations.Repository;
 import com.company.app.models.UnidadMedida;
 import com.company.app.repositories.UnidadMedidaRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+@Repository
 public class UnidadMedidaRepositoryImpl implements UnidadMedidaRepository {
 
+    @Inject
     private EntityManager em;
-
-    public UnidadMedidaRepositoryImpl(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<UnidadMedida> findAll() {

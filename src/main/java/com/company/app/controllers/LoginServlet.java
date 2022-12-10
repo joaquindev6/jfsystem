@@ -3,6 +3,7 @@ package com.company.app.controllers;
 import com.company.app.models.User;
 import com.company.app.services.UserService;
 import com.company.app.services.impl.UserServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +16,8 @@ import java.util.Optional;
 @WebServlet("/sesion")
 public class LoginServlet extends HttpServlet {
 
-    private UserService userService = new UserServiceImpl();
+    @Inject
+    private UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

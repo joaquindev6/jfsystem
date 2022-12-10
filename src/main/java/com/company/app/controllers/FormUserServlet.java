@@ -4,7 +4,7 @@ import com.company.app.models.DocumentType;
 import com.company.app.models.User;
 import com.company.app.models.UserRole;
 import com.company.app.services.UserService;
-import com.company.app.services.impl.UserServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +23,8 @@ import java.util.Map;
 @WebServlet("/control/usuarios/formulario/save") //Esta es solo para redireccionar a este servlet, no se mostrara en la vista
 public class FormUserServlet extends HttpServlet {
 
-    private UserService userService = new UserServiceImpl(); //Instanciamos el servicio a utilizar
+    @Inject
+    private UserService userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

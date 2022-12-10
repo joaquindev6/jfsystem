@@ -6,8 +6,6 @@ import com.company.app.models.Product;
 import com.company.app.models.User;
 import com.company.app.services.ProductService;
 import com.company.app.services.UserService;
-import com.company.app.services.impl.ProductServiceImpl;
-import com.company.app.services.impl.UserServiceImpl;
 import com.company.app.util.TextFormatString;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.geom.PageSize;
@@ -20,6 +18,8 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,12 +27,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@ApplicationScoped
 public class PdfReport {
 
-    private static UserService userService = new UserServiceImpl();
-    private static ProductService productService = new ProductServiceImpl();
+    @Inject
+    private UserService userService;
 
-    public static void initReportPDF(OutputStream out, int option, User user) {
+    @Inject
+    private ProductService productService;
+
+    public void initReportPDF(OutputStream out, int option, User user) {
         PdfWriter pdfWriter = new PdfWriter(out);
         PdfDocument pdfDoc = new PdfDocument(pdfWriter);
         Document doc = new Document(pdfDoc, PageSize.A4.rotate());
@@ -75,7 +79,7 @@ public class PdfReport {
     }
 
     //Permite cambiar el titulo de los reportes
-    private static Table titleList(String title) {
+    private Table titleList(String title) {
         float[] columnWidth = {1F};
         Table table = new Table(columnWidth);
         table.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -93,7 +97,7 @@ public class PdfReport {
     }
 
     //Inserta el nombre de usuario y fecha de generacion del archivo PDF
-    private static Table dataReporte(User user) {
+    private Table dataReporte(User user) {
         float[] columnWidth = {1F};
         Table table = new Table(columnWidth);
         table.setMarginBottom(12F);
@@ -117,7 +121,7 @@ public class PdfReport {
     }
 
     //Genera la tabla con los registros de usuarios
-    private static Table tableUsers() throws IOException {
+    private Table tableUsers() throws IOException {
         float[] columnWidth = {20F, 20F, 20F, 20F, 20F, 20F, 20F, 20F};
         Table table = new Table(columnWidth);
 
@@ -147,7 +151,7 @@ public class PdfReport {
     }
 
     //Genera la tabla con los registros de productos
-    private static Table tableProducts() throws IOException {
+    private Table tableProducts() throws IOException {
         float[] columnWidth = {20F, 20F, 20F, 20F, 20F, 20F, 20F, 20F};
         Table table = new Table(columnWidth);
 
@@ -177,7 +181,7 @@ public class PdfReport {
     }
 
     //Genera la tabla con los registros de categorias de productos
-    private static Table tableCategory() throws IOException {
+    private Table tableCategory() throws IOException {
         float[] columnWidth = {20F, 20F, 20F};
         Table table = new Table(columnWidth);
 
@@ -201,7 +205,7 @@ public class PdfReport {
     }
 
     //Genera la tabla con los registros de marcas de productos
-    private static Table tableMark() throws IOException {
+    private Table tableMark() throws IOException {
         float[] columnWidth = {20F, 20F, 20F};
         Table table = new Table(columnWidth);
 

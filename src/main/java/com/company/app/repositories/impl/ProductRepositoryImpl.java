@@ -1,18 +1,18 @@
 package com.company.app.repositories.impl;
 
+import com.company.app.annotations.Repository;
 import com.company.app.models.Product;
 import com.company.app.repositories.ProductRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
+    @Inject
     private EntityManager em;
-
-    public ProductRepositoryImpl(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<Product> findAll() {

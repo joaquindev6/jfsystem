@@ -6,6 +6,7 @@ import com.company.app.models.Product;
 import com.company.app.models.UnidadMedida;
 import com.company.app.services.ProductService;
 import com.company.app.services.impl.ProductServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,8 @@ import java.util.Optional;
 @WebServlet("/inventario/productos/formulario")
 public class FormProductServletShow extends HttpServlet {
 
-    private ProductService productService = new ProductServiceImpl();
+    @Inject
+    private ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

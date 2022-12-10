@@ -5,7 +5,7 @@ import com.company.app.models.MarkProduct;
 import com.company.app.models.Product;
 import com.company.app.models.UnidadMedida;
 import com.company.app.services.ProductService;
-import com.company.app.services.impl.ProductServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +19,8 @@ import java.util.Map;
 @WebServlet("/inventario/productos/formulario/save")
 public class FormProductServlet extends HttpServlet {
 
-    private ProductService productService = new ProductServiceImpl();
+    @Inject
+    private ProductService productService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

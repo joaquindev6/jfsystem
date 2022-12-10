@@ -1,17 +1,17 @@
 package com.company.app.repositories.impl;
 
+import com.company.app.annotations.Repository;
 import com.company.app.models.User;
 import com.company.app.repositories.UserRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
+    @Inject
     private EntityManager em;
-
-    public UserRepositoryImpl(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<User> findAll() {

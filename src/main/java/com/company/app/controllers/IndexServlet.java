@@ -6,8 +6,7 @@ import com.company.app.models.Product;
 import com.company.app.models.User;
 import com.company.app.services.ProductService;
 import com.company.app.services.UserService;
-import com.company.app.services.impl.ProductServiceImpl;
-import com.company.app.services.impl.UserServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +19,11 @@ import java.util.List;
 @WebServlet({"/inicio"})
 public class IndexServlet extends HttpServlet {
 
-    private UserService userService = new UserServiceImpl();
-    private ProductService productService = new ProductServiceImpl();
+    @Inject
+    private UserService userService;
+
+    @Inject
+    private ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

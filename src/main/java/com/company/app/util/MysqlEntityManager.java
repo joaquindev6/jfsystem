@@ -6,8 +6,13 @@ import jakarta.persistence.Persistence;
 
 public class MysqlEntityManager {
 
+    private static EntityManagerFactory emf = buildEntityManagerFactory();
+
+    private static EntityManagerFactory buildEntityManagerFactory() {
+        return Persistence.createEntityManagerFactory("jpamysql");
+    }
+
     public static EntityManager getEntityManager() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpamysql");
-        return entityManagerFactory.createEntityManager();
+        return emf.createEntityManager();
     }
 }

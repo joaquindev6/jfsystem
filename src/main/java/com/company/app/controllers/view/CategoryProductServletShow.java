@@ -3,6 +3,7 @@ package com.company.app.controllers.view;
 import com.company.app.models.CategoryProduct;
 import com.company.app.services.ProductService;
 import com.company.app.services.impl.ProductServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +16,8 @@ import java.util.List;
 @WebServlet("/inventario/categoria-producto")
 public class CategoryProductServletShow extends HttpServlet {
 
-    private ProductService productService = new ProductServiceImpl();
+    @Inject
+    private ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

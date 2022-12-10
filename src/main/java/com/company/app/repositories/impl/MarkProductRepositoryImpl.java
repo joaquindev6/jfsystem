@@ -1,18 +1,18 @@
 package com.company.app.repositories.impl;
 
+import com.company.app.annotations.Repository;
 import com.company.app.models.MarkProduct;
 import com.company.app.repositories.MarkProductRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+@Repository
 public class MarkProductRepositoryImpl implements MarkProductRepository {
 
+    @Inject
     private EntityManager em;
-
-    public MarkProductRepositoryImpl(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<MarkProduct> findAll() {

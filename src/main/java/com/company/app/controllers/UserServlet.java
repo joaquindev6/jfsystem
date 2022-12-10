@@ -2,6 +2,7 @@ package com.company.app.controllers;
 
 import com.company.app.services.UserService;
 import com.company.app.services.impl.UserServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +19,9 @@ import java.io.IOException;
 @WebServlet("/control/usuarios/data-show") //Esta es solo para redireccionar a este servlet, no se mostrara en la vista
 public class UserServlet extends HttpServlet {
 
-    private UserService userService = new UserServiceImpl(); //Instanciamos el servicio a utilizar
+//    private UserService userService = new UserServiceImpl(); //Instanciamos el servicio a utilizar
+    @Inject
+    private UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

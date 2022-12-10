@@ -1,6 +1,7 @@
 package com.company.app.controllers.reports;
 
 import com.company.app.models.User;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,11 +14,14 @@ import java.io.OutputStream;
 @WebServlet("/inventario/marca-producto/reporte-de-marcas-de-productos.pdf")
 public class MarkProductReportServlet extends HttpServlet {
 
+    @Inject
+    private PdfReport pdfReport;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("userLogin");
         resp.setContentType("application/pdf");
         OutputStream out = resp.getOutputStream();
-        PdfReport.initReportPDF(out, 4, user);
+        pdfReport.initReportPDF(out, 4, user);
     }
 }
